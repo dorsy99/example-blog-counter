@@ -1,0 +1,30 @@
+{
+	"name": "@aad/example-blog",
+	"version": "0.0.1",
+	"private": false,
+	"description": "It's what it says on the lid",
+	"keywords": [
+		"ServiceNow",
+		"Now Experience UI Component",
+		"@aad/example-blog"
+	],
+	"readme": "./README.md",
+	"engines": {
+		"node": ">=8.6.0",
+		"npm": ">=5.3.0"
+	},
+	"module": "src/index.js",
+	"dependencies": {
+		"@servicenow/ui-core": "orlando",
+		"@servicenow/ui-renderer-snabbdom": "orlando",
+		"@servicenow/cli-archetype": "17.0.1",
+		"@servicenow/cli-component-archetype": "17.0.1",
+		"@servicenow/sass-theme": "orlando",
+		"@servicenow/sass-kit": "orlando",
+		"sn-translate": "orlando"
+	},
+	"devDependencies": {
+		"@servicenow/cli-archetype-dev": "17.0.1",
+		"@servicenow/cli-component-archetype-dev": "17.0.1"
+	}
+}

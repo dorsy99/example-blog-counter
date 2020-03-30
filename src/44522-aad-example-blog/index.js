@@ -42,8 +42,8 @@ const fetchUserEffect = createHttpEffect(':url', {
 */
 
 // Create the effect for fetching a user
-//const endpoint = "https://wizardly-wing-66188a.netlify.com/.netlify/functions/server/";
-const endpoint = '/api/now/table/incident?sysparm_limit=1'
+const endpoint = "https://wizardly-wing-66188a.netlify.com/.netlify/functions/server/";
+//const endpoint = '/api/now/table/incident?sysparm_limit=1'
 const fetchUserEffect = createHttpEffect(endpoint, { 
 	method: 'GET',
 	headers: {
@@ -86,8 +86,28 @@ const view = (state, {dispatch, updateState}) => {
 	return (
 		<div>
 			<div><h1>Hello World! Finally, Amirite?</h1></div>
-			<div><now-button cta="Positive" iconName="" iconSet="solid" label="Log something to console" size="md" variant="primary" on-click={buttonClicked}></now-button></div>
-			<div><now-button cta="Positive" iconName="" iconSet="solid" label="Show a joke" size="md" variant="primary" on-click={getUser}></now-button></div>
+			<div>
+				<now-button 
+					cta="Positive" 
+					iconName="" 
+					iconSet="solid" 
+					label="Log something to console" 
+					size="md" 
+					variant="primary" 
+					on-click={buttonClicked}
+				/>
+			</div>
+			<div>
+				<now-button 
+					cta="Positive" 
+					iconName="" 
+					iconSet="solid" 
+					label="Show a joke" 
+					size="md" 
+					variant="primary" 
+					on-click={getUser}
+				/>
+			</div>
 			<div>JOKE: {state.test.joke}</div>
 			{output}
 		</div>

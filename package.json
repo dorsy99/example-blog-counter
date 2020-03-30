@@ -15,12 +15,13 @@
 	},
 	"module": "src/index.js",
 	"dependencies": {
-		"@servicenow/ui-core": "orlando",
-		"@servicenow/ui-renderer-snabbdom": "orlando",
 		"@servicenow/cli-archetype": "17.0.1",
 		"@servicenow/cli-component-archetype": "17.0.1",
-		"@servicenow/sass-theme": "orlando",
 		"@servicenow/sass-kit": "orlando",
+		"@servicenow/sass-theme": "orlando",
+		"@servicenow/ui-core": "orlando",
+		"@servicenow/ui-effect-http": "^17.0.1",
+		"@servicenow/ui-renderer-snabbdom": "orlando",
 		"sn-translate": "orlando"
 	},
 	"devDependencies": {

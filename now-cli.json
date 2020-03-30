@@ -1,7 +1,7 @@
 {
   "development": {
     "proxy": {
-      "origin": "http://localhost:8080",
+      "origin": "http://dev90708.service-now.com",
       "headers": {
         "Authorization": "Basic YWRtaW46YWRtaW4="
       },

@@ -1,5 +1,5 @@
 @aad/example-blog
 ===============================================
-It&#39;s \nwhat it says on the lid
+A component I'll be using as examples on my blog, and to play with the Experience in general. 
 
-Component Authors, provide some documentation for your users here!
+If you love it, let it go ([go and read my blog](https://andrew.alburydor.com) that is)

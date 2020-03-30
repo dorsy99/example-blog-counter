@@ -1,5 +1,6 @@
 import { createCustomElement } from '@servicenow/ui-core';
 // import { createHttpEffect } from '@servicenow/ui-effect-http';
+import '@servicenow/now-button';
 import snabbdom from '@servicenow/ui-renderer-snabbdom';
 import styles from './styles.scss';
 
@@ -41,24 +42,18 @@ const fetchUserEffect = createHttpEffect(':url', {
 */
 
 // Create the effect for fetching a user
-const endpoint = "https://wizardly-wing-66188a.netlify.com/.netlify/functions/server/";
-// const endpoint = "https://thevirustracker.com/free-api?countryTotal=id";
+//const endpoint = "https://wizardly-wing-66188a.netlify.com/.netlify/functions/server/";
+const endpoint = '/api/now/table/incident?sysparm_limit=1'
 const fetchUserEffect = createHttpEffect(endpoint, { 
 	method: 'GET',
 	headers: {
-		//"user-agent": "sn",
-		//"Access-Control-Allow-Origin": "*",
-		//"Content-Type": "application/json",
-		//"origin": "https://testsite.com"
 	},
-	//mode: 'no-cors'
-	//successActionType: USER_FETCH_SUCCESS
  });
 
 // Handle when user fetch succeeded: log the result
-const handleFetchUserSucceeded = ({action}) => {
+const handleFetchUserSucceeded = ({action, updateState}) => {
 	var x = action.payload;
-	//console.log();
+	//console.log(x);
 	updateState({
 		path: "test",
 		value: x,
@@ -67,34 +62,45 @@ const handleFetchUserSucceeded = ({action}) => {
 }
 
 // Handle when user fetch failed: alert failure message
-const handleFetchUserFailed = ({action}) => alert('User fetch failed!');
+const handleFetchUserFailed = ({action}) => {
+	//alert('User fetch failed!');
+	console.log(action);
+}
 
 
 // VIEW
 const view = (state, {dispatch, updateState}) => {
 	console.log(state);
+	//getUser();
 	function buttonClicked() {
 		dispatch('BUTTON_CLICKED');
 	}
 	function getUser() {
 		dispatch('USER_FETCHED', {url: '/api/test1'});
 	}
+	var output = '';
+	if (state.test.punchline) {
+		output = <div>PUNCHLINE: {state.test.punchline}</div>
+	}
 
 	return (
 		<div>
-			<div>Hello World! Finally, Amirite?</div>
-			<a href="#" on-click={buttonClicked}>CLICK ME</a>
-			<br /><br />
-			<a href="#" on-click={getUser}>Fetch User?</a>
+			<div><h1>Hello World! Finally, Amirite?</h1></div>
+			<div><now-button cta="Positive" iconName="" iconSet="solid" label="Log something to console" size="md" variant="primary" on-click={buttonClicked}></now-button></div>
+			<div><now-button cta="Positive" iconName="" iconSet="solid" label="Show a joke" size="md" variant="primary" on-click={getUser}></now-button></div>
+			<div>JOKE: {state.test.joke}</div>
+			{output}
 		</div>
-
 	);
 };
 
 createCustomElement('x-44522-aad-example-blog', {
 	renderer: { type: snabbdom },
 	initialState: {
-		test: "init"
+		test: {
+			joke: "Now Experience Documentation", 
+			//punchline: "Haha"
+		}
 	},
 	/* updateState({
 		firstName: 'Fred',

@@ -17,6 +17,7 @@
 	"dependencies": {
 		"@servicenow/cli-archetype": "17.0.1",
 		"@servicenow/cli-component-archetype": "17.0.1",
+		"@servicenow/now-button": "^17.0.1",
 		"@servicenow/sass-kit": "orlando",
 		"@servicenow/sass-theme": "orlando",
 		"@servicenow/ui-core": "orlando",

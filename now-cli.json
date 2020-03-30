@@ -5,7 +5,8 @@
       "headers": {
         "Authorization": "Basic YWRtaW46YWRtaW4="
       },
-      "proxies": []
+      "proxies": [],
+      "port": 3000
     },
     "test": {
         "unit": [

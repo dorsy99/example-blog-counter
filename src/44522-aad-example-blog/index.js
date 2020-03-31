@@ -31,6 +31,7 @@ const FETCH_USER = "FETCH_USER";
 const BUTTON_CLICKED = 'BUTTON_CLICKED';
 const GET_INC = "GET_INC";
 
+const PUSH_INC_UP = 'PUSH_INC_UP';
 
 //HTTP EFFECT
 /*
@@ -69,6 +70,18 @@ const getIncident = createHttpEffect('/api/now/table/incident?sysparm_limit=1', 
 		
 	}
 })
+
+const updateIncState = ({action, updateState}) => {
+	console.log("ACTION: " + JSON.stringify(action));
+	updateState({
+		path: "inc",
+		value: {
+            number: action.payload.number,
+            sys_id: action.payload.sys_id
+        },
+		operation: "set"
+	})
+}
 
 const showIncDetails = ({action, updateState}) => {
 
@@ -156,7 +169,8 @@ createCustomElement('x-44522-aad-example-blog', {
 		'USER_FETCHED': fetchUserEffect,
 		'FETCH_SUCCEEDED': handleFetchUserSucceeded,
 		'FETCH_FAILED': handleFetchUserFailed,
-		'GET_INC': getIncident
+		'GET_INC': getIncident,
+		'PUSH_INC_UP': updateIncState
 	},
 	view,
 	styles

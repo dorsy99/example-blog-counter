@@ -4,7 +4,8 @@ import {createHttpEffect} from '@servicenow/ui-effect-http';
 import snabbdom from '@servicenow/ui-renderer-snabbdom';
 import styles from './styles.scss';
 
-const INC_FETCH_SUCCESS = 'INC_FETCH_SUCCESS'
+const INC_FETCH_SUCCESS = 'INC_FETCH_SUCCESS';
+
 
 //testing
 const endpoint = '/api/now/table/incident?sysparm_limit=1';
@@ -17,18 +18,23 @@ const fetchIncEffect = createHttpEffect(endpoint, {
     successActionType: INC_FETCH_SUCCESS
 });
 
-const handleFetchIncSucceeded = ({action, updateState}) => {
+const handleFetchIncSucceeded = ({action, updateState, dispatch}) => {
 	var x = action.payload;
     console.log(x);
     //console.log(state);
-	updateState({
+    dispatch('PUSH_INC_UP', 
+        {
+            number: x.result[0].number,
+            sys_id: x.result[0].sys_id
+        });
+	/* updateState({
 		path: "inc",
 		value: {
             number: x.result[0].number,
             sys_id: x.result[0].sys_id
         },
 		operation: "set"
-	}) 
+	}) */
 }
 
 /*

@@ -6,23 +6,37 @@ import styles from './styles.scss';
 
 const INC_FETCH_SUCCESS = 'INC_FETCH_SUCCESS'
 
-const fetchIncEffect = createHttpEffect(':url', {
+//testing
+const endpoint = '/api/now/table/incident?sysparm_limit=1';
+
+const fetchIncEffect = createHttpEffect(endpoint, {
     method: 'GET',
     headers: {},
-    pathParams: ['url'],
-    dataParam: 'data',
+    //pathParams: ['url'],
+    //dataParam: 'data',
     successActionType: INC_FETCH_SUCCESS
 });
 
 const handleFetchIncSucceeded = ({action, updateState}) => {
 	var x = action.payload;
-	console.log(x);
-	/* updateState({
+    console.log(x);
+    //console.log(state);
+	updateState({
 		path: "inc",
-		value: x,
+		value: {
+            number: x.result[0].number,
+            sys_id: x.result[0].sys_id
+        },
 		operation: "set"
-	})*/ 
+	}) 
 }
+
+/*
+		inc: {
+			number: "INC1234",
+			sys_id: "test"
+		}
+*/
 
 const view = (state, {dispatch, updateState}) => {
 	function getIncident() {

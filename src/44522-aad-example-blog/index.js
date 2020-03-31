@@ -1,4 +1,5 @@
 import { createCustomElement } from '@servicenow/ui-core';
+import "../44522-aad-http2";
 // import { createHttpEffect } from '@servicenow/ui-effect-http';
 import '@servicenow/now-button';
 import snabbdom from '@servicenow/ui-renderer-snabbdom';
@@ -28,6 +29,7 @@ function createHttpEffect(url, options) {
 const USER_FETCH_SUCCESS = 'USER_FETCH_SUCCESS';
 const FETCH_USER = "FETCH_USER";
 const BUTTON_CLICKED = 'BUTTON_CLICKED';
+const GET_INC = "GET_INC";
 
 
 //HTTP EFFECT
@@ -61,6 +63,17 @@ const handleFetchUserSucceeded = ({action, updateState}) => {
 	})
 }
 
+const getIncident = createHttpEffect('/api/now/table/incident?sysparm_limit=1', {
+	method: 'GET',
+	headers: {
+		
+	}
+})
+
+const showIncDetails = ({action, updateState}) => {
+
+}
+
 // Handle when user fetch failed: alert failure message
 const handleFetchUserFailed = ({action}) => {
 	//alert('User fetch failed!');
@@ -77,6 +90,9 @@ const view = (state, {dispatch, updateState}) => {
 	}
 	function getUser() {
 		dispatch('USER_FETCHED', {url: '/api/test1'});
+	}
+	function getInc() {
+		dispatch('GET_INC');
 	}
 	var output = '';
 	if (state.test.punchline) {
@@ -110,6 +126,12 @@ const view = (state, {dispatch, updateState}) => {
 			</div>
 			<div>JOKE: {state.test.joke}</div>
 			{output}
+			<br />
+			<br />
+			<x-44522-aad-http2></x-44522-aad-http2>
+			<div>
+				INC Details: {state.inc.number} / {state.inc.sys_id}
+			</div>
 		</div>
 	);
 };
@@ -119,7 +141,10 @@ createCustomElement('x-44522-aad-example-blog', {
 	initialState: {
 		test: {
 			joke: "Now Experience Documentation", 
-			//punchline: "Haha"
+		},
+		inc: {
+			number: "INC1234",
+			sys_id: "test"
 		}
 	},
 	/* updateState({
@@ -130,7 +155,8 @@ createCustomElement('x-44522-aad-example-blog', {
 		'BUTTON_CLICKED': (coeffects) => console.log("A link was clicked"),
 		'USER_FETCHED': fetchUserEffect,
 		'FETCH_SUCCEEDED': handleFetchUserSucceeded,
-		'FETCH_FAILED': handleFetchUserFailed
+		'FETCH_FAILED': handleFetchUserFailed,
+		'GET_INC': getIncident
 	},
 	view,
 	styles

@@ -158,14 +158,23 @@ createCustomElement('x-44522-aad-example-blog', {
 		inc: {
 			number: "INC1234",
 			sys_id: "test"
-		}
+		},
+		consoleLog: 0,
 	},
 	/* updateState({
 		firstName: 'Fred',
 		lastName: 'Luddy'
 	}), */
 	actionHandlers: {
-		'BUTTON_CLICKED': (coeffects) => console.log("A link was clicked"),
+		'BUTTON_CLICKED': (action, updateState, state) => {
+			console.log("A link was clicked")
+			/*updateState({
+				path: "consoleLog",
+				value: state.consoleLog + 1,
+				operation: "set"
+			});*/
+			//console.log("TIMES LOGGED TO THE CONSOLE: " + coeffects.state.consoleLog)
+		},
 		'USER_FETCHED': fetchUserEffect,
 		'FETCH_SUCCEEDED': handleFetchUserSucceeded,
 		'FETCH_FAILED': handleFetchUserFailed,
